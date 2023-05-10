@@ -1,0 +1,40 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Services.Common.Collection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Services.Common.Paging
+{
+    public static class PagingExtension
+    {
+        public static async Task<DataCollection<T>> GetPageAsync<T>(
+            this IQueryable<T> query,
+            int page,
+            int take)
+        {
+            var originalPages = page;
+            page--;
+            if (page > 0)
+            {
+                page = page * take;
+            }
+
+            var result = new DataCollection<T>
+            {
+                Items = await query.Skip(page).Take(take).ToListAsync(),
+                Total =  await query.CountAsync(),
+                Page= originalPages
+            };
+            if (result.Total > 0)
+            {
+                result.Page=Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(result.Total)/take));
+            }
+            return result;
+
+        }
+    }
+}
