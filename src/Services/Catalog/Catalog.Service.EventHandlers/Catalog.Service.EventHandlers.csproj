@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Services.Common.Paging\Services.Common.Paging.csproj" />
-    <ProjectReference Include="..\..\Services.Common.Mapping\Services.Common.Mapping.csproj" />
     <ProjectReference Include="..\Catalog.Persistence.Database\Catalog.Persistence.Database.csproj" />
   </ItemGroup>
 
