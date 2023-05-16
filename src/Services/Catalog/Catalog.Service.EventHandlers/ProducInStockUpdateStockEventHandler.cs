@@ -54,7 +54,7 @@ namespace Catalog.Service.EventHandlers
 
                     entry.Stock -= item.Stock;
 
-                    _logger.LogInformation($"-- Producto {entry.ProductId} nuevo stock {entry.Stock}");
+                    _logger.LogInformation($"--Substrae  Producto con el Id: {entry.ProductId} el nuevo stock es: {entry.Stock}");
 
                 }
                 else
@@ -72,6 +72,8 @@ namespace Catalog.Service.EventHandlers
                     }
 
                     entry.Stock += item.Stock;
+                    _logger.LogInformation($"--- Agregar stock del  Producto con el Id:  {entry.ProductId} la cantidad de productos es: {entry.Stock}");
+
                 }
             }
 
